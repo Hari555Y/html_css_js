@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>My Counter</title>
+</head>
+<script>
+    var led_num =0;
+    function adder_func(){
+        led_num++;
+        document.getElementById("addi").value= led_num; 
+    }
+    function sub_func(){
+        led_num--;
+        document.getElementById("addi").value = led_num; 
+    }
+</script>
+
+<body>
+<h> My counter program </h>
+<br>
+<br>
+<input type = 'text' id = 'addi' value = '0'></input>
+<button type="button" onclick= "adder_func()">+</button>
+<button type="button" onclick="sub_func()">-</button>
+
+
+</body>
+</html>
