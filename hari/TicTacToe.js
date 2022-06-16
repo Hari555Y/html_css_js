@@ -2,6 +2,7 @@ var board;
 var player1 = "O";
 var player2 = "X";
 var currPlayer = player1;
+var prevPlayer = player2;
 var gameOver = false;
 
 window.onload = function() {
@@ -19,12 +20,16 @@ window.onload = function() {
             if (r>=0 && r<2) {
                 tile.classList.add("horizontal-line");
             }
-            if (c>=-1 && c<2) {
+            if (c>=0 && c<2) {
                 tile.classList.add("vertical-line");
             }
             tile.innerText = "";
             tile.addEventListener("click", setTile);
             document.getElementById("board").appendChild(tile);
+            //  if (gameOver==true){
+            //     alert(prevPlayer + "Wins");
+            //     console.log(gameOver);
+            //  }
         }
     }
 }
@@ -45,19 +50,24 @@ function setTile() {
     this.innerText = currPlayer;
     if (currPlayer == player1) {
         currPlayer = player2;
+        prevPlayer = player1;
     }
     else {
         currPlayer = player1;
+        prevPlayer = player2;
     }
     checkWinner();
-    if (gameOver== true){
-        Window.alert(currPlayer +  "Wins");
-    }
+    // if (gameOver== true){
+    //     Window.alert(currPlayer +  "Wins");
+    //     return;
+    // }
 }
 
 
 function checkWinner() {
     //horizontally, check 3 rows
+  //  debugger;
+    console.log("In the func checkWinner");
     for (let r = 0; r < 3; r++) {
         if (board[r][0] == board[r][1] && board[r][1] == board[r][2] && board[r][0] != ' ') {
             for (let i = 0; i < 3; i++) {
@@ -65,8 +75,11 @@ function checkWinner() {
                 tile.classList.add("winner");
             }
             gameOver = true;
-           // window.alert(currPlayer + "Wins");
-         //   document.getElementById("winn").innerHtml = currplayer + "Wins";
+           // alert(prevPlayer + "Wins");
+           debugger;
+           //settimeout
+           document.getElementById("winn").innerHTML = prevPlayer + " Wins";
+           //console.log()
             return;
         }
     }
@@ -77,8 +90,12 @@ function checkWinner() {
                 tile.classList.add("winner");
             }
             gameOver = true;
-          //  window.alert(currPlayer + "Wins");
-         //   document.getElementById("winn").innerHtml = currplayer + "Wins";
+         //   alert(prevPlayer + "Wins");
+          //  debugger;
+            let jab = document.getElementById("winn");
+            jab.innerHTML= prevPlayer + " Wins";
+            console.log(jab);
+            //debugger;
             return;
         }
     }
@@ -89,8 +106,8 @@ function checkWinner() {
             tile.classList.add("winner");
         }
         gameOver = true;
-       // window.alert(currPlayer + "Wins");
-   //     document.getElementById("winn").innerHtml = currplayer + "Wins";
+       // alert(prevPlayer + "Wins");
+       document.getElementById("winn").innerHTML = prevPlayer + " Wins";
         return;
     }
     if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
@@ -101,7 +118,7 @@ function checkWinner() {
         tile = document.getElementById("2-0");                
         tile.classList.add("winner");
         gameOver = true;
-      //  window.alert(currPlayer + "Wins");
+        document.getElementById("winn").innerHTML = prevPlayer + " Wins";        
         return;
     }
 }
