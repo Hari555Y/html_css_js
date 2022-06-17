@@ -78,7 +78,7 @@ myArray.myMethod(); // prints "zero,one,two"
  function greet(userName) {
   console.log('Welcome ' + userName + '!');
  }
- setTimeout(greet, 8000, loggedInUser);
+  setTimeout(greet, 8000, loggedInUser);
 
 // // if we pass the arguments directly we will just be using the return value as our callback method
-setTimeout(greet(loggedInUser), 20000); // returned quickly
+setTimeout('greet(loggedInUser)', 20000); // returned quickly
